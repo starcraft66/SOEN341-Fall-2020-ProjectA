@@ -36,7 +36,7 @@ public class wc {
         } catch (ArgumentParserException e) {
             parser.handleError(e);
             System.exit(1);
-        }select room_id, count(*) as num_rows from state_groups_state group by room_id order by num_rows desc limit 10;
+        }
 
         // Check if arguments are valid, if the srcFile exists, and if can create the dstFile.
         for (String fname : (ArrayList<String>) ns.get("src")) {
