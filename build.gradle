@@ -13,16 +13,15 @@ repositories {
 }
 
 application {
-    mainClassName = "co.tdude.soen341.projecta.linecount"
+    mainClassName = "co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl.CopyCommand"
 }
 
 run {
     standardInput = System.in
-    args("src/main/java/co/tdude/soen341/projecta/wc.c")
+    args "-b", "src/main/resources/wc.java", "src/main/resources/wc2.java"
 }
 
 dependencies {
-    compile group: 'net.sourceforge.argparse4j', name: 'argparse4j', version: '0.8.1'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
@@ -49,10 +48,10 @@ sourceSets {
 task copyJar(type: ShadowJar) {
     archiveName = "copy-${version}.jar"
     manifest {
-        attributes('Main-Class': 'co.tdude.soen341.projecta.copy')
+        attributes('Main-Class': 'co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl.CopyCommand')
     }
     from(sourceSets.main.output) {
-        include "co/tdude/soen341/projecta/copy.class"
+        include "co/tdude/soen341/projecta/**"
     }
     configurations = [project.configurations.runtime]
 }
@@ -60,10 +59,10 @@ task copyJar(type: ShadowJar) {
 task charcountJar(type: ShadowJar) {
     archiveName = "charcount-${version}.jar"
     manifest {
-        attributes('Main-Class': 'co.tdude.soen341.projecta.charcount')
+        attributes('Main-Class': 'co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl.wcoo.CharacterCount')
     }
     from(sourceSets.main.output) {
-        include "co/tdude/soen341/projecta/charcount.class"
+        include "co/tdude/soen341/projecta/**"
     }
     configurations = [project.configurations.runtime]
 }
@@ -71,10 +70,10 @@ task charcountJar(type: ShadowJar) {
 task linecountJar(type: ShadowJar) {
     archiveName = "linecount-${version}.jar"
     manifest {
-        attributes('Main-Class': 'co.tdude.soen341.projecta.linecount')
+        attributes('Main-Class': 'co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl.wcoo.LineCount')
     }
     from(sourceSets.main.output) {
-        include "co/tdude/soen341/projecta/linecount.class"
+        include "co/tdude/soen341/projecta/**"
     }
     configurations = [project.configurations.runtime]
 }
@@ -82,10 +81,10 @@ task linecountJar(type: ShadowJar) {
 task wcJar(type: ShadowJar) {
     archiveName = "wc-${version}.jar"
     manifest {
-        attributes('Main-Class': 'co.tdude.soen341.projecta.wc')
+        attributes('Main-Class': 'co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl.wcoo.EverythingCount')
     }
     from(sourceSets.main.output) {
-        include "co/tdude/soen341/projecta/wc.class"
+        include "co/tdude/soen341/projecta/**"
     }
     configurations = [project.configurations.runtime]
 }
@@ -93,10 +92,10 @@ task wcJar(type: ShadowJar) {
 task wordcountJar(type: ShadowJar) {
     archiveName = "wordcount-${version}.jar"
     manifest {
-        attributes('Main-Class': 'co.tdude.soen341.projecta.wordcount')
+        attributes('Main-Class': 'co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl.wcoo.WordCount')
     }
     from(sourceSets.main.output) {
-        include "co/tdude/soen341/projecta/wordcount.class"
+        include "co/tdude/soen341/projecta/**"
     }
     configurations = [project.configurations.runtime]
 }
