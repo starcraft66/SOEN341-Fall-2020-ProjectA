@@ -10,5 +10,5 @@ public class BooleanCommandLineArgument extends EnterpriseCommandLineArgument<Bo
     public Boolean parseValue(String arg) {
         return Boolean.valueOf(arg);
     }
-
+//test
 }
