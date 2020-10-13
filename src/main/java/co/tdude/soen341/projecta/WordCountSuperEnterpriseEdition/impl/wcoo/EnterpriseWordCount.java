@@ -12,6 +12,9 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Abstract class serving as the skeleton of any executable in the wcOO family of programs.
+ */
 public abstract class EnterpriseWordCount implements IWordCount {
     protected WordCountCountStrategy wordCountCountStrategy;
     protected Level level = Level.INFO;
@@ -20,6 +23,16 @@ public abstract class EnterpriseWordCount implements IWordCount {
     protected StringBuilder fileContent;
     protected String appName;
 
+    /**
+     * The constructor that initializes a counting program. It takes care of tasks like registering the relevant
+     * command arguments in the argument parser, toggling flags based on parsed command-line arguments like
+     * printing the information banner, printing with verbose output. It also reads the file to be processed
+     * and dumps its content into a string.
+     * @param wordCountCountStrategy The strategy to count the input file with (usually line, word or character)
+     * @param argv The array containing the command-line arguments passed to the program
+     * @param BANNER The information/copyright banner the program will use
+     * @param appName The name of the program
+     */
     public EnterpriseWordCount(WordCountCountStrategy wordCountCountStrategy, String[] argv, String BANNER, String appName) {
         this.appName = appName;
         ArgumentParser argumentParser = new EnterpriseArgumentParser(1);
@@ -58,6 +71,12 @@ public abstract class EnterpriseWordCount implements IWordCount {
         }
     }
 
+    /**
+     * The method that will perform the counting operation based on the program's counting strategy.
+     * It also prints the banner if needed and adjusts the logging level if needed.
+     * @param fileContent The content of the file to be parsed in a String
+     * @return The amount of words/lines/characters counted depending on the counting strategy
+     */
     @Override
     public int runCount(String fileContent) {
         Logger.getLogger("").setLevel(this.level);

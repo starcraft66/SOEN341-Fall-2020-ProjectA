@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 public class EverythingCount extends EnterpriseWordCount {
     public EverythingCount(WordCountCountStrategy countByCharacterStrategy, String[] args, String banner, String appName) {
         super(countByCharacterStrategy, args, banner, appName);
+        this.banner = false;
         this.wordCountCountStrategy = new CountByWordStrategy();
         int result = runCount(this.fileContent.toString());
         Logger.getLogger("").info(String.valueOf(result));
