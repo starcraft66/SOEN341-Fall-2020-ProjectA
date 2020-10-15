@@ -44,7 +44,6 @@ public abstract class EnterpriseWordCount implements IWordCount {
         }
         if (argumentParser.getArguments().containsKey("v")) {
             if ((Boolean) argumentParser.getArguments().get("v")) {
-                Logger.getLogger("wc").info("lol");
                 this.level = Level.FINE;
             }
         }
@@ -55,6 +54,9 @@ public abstract class EnterpriseWordCount implements IWordCount {
         }
         this.wordCountCountStrategy = wordCountCountStrategy;
         this.BANNER = BANNER;
+        if (this.banner) {
+            Logger.getLogger("").info(this.BANNER);
+        }
         String fileName = argumentParser.getPositional().get(0);
         try {
             FileReader reader = new FileReader(fileName);
@@ -82,9 +84,6 @@ public abstract class EnterpriseWordCount implements IWordCount {
         Logger.getLogger("").setLevel(this.level);
         for (Handler h : Logger.getLogger("").getHandlers()) {
             h.setLevel(this.level);
-        }
-        if (this.banner) {
-            Logger.getLogger("").info(this.BANNER);
         }
         return this.wordCountCountStrategy.getCount(fileContent);
     }
