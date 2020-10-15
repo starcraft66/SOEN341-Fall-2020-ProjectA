@@ -9,6 +9,12 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Implementation of the copy command without using the wcOO framework.
+ * It uses the same argument parser used in the wcOO family of programs.
+ * It copies a file to a destination on disk and can optionally print an information banner or print verbose output
+ * in the form of printing one period character to stdout for every byte copied.
+ */
 public class CopyCommand {
     protected static Level level = Level.INFO;
     protected static boolean banner = false;
@@ -20,6 +26,12 @@ public class CopyCommand {
     private static String srcFilename = "<srcFilename>";
     private static String dstFilename = "<dstFilename>";
 
+    /**
+     * Main method. Initializes the argument parser and adds command-line arguments for banner print and verbose print.
+     * It copies a file to a destination on disk and can optionally print an information banner or print verbose output
+     * in the form of printing one period character to stdout for every byte copied.
+     * @param args The array containing the command-line arguments passed to the program
+     */
     public static void main(String[] args) {
         ArgumentParser argumentParser = new EnterpriseArgumentParser(2);
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("banner", "Print command information banner"));
