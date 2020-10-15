@@ -24,8 +24,6 @@ public abstract class EnterpriseWordCount implements IWordCount {
                 getResourceAsStream("logging.properties");
         try {
             LogManager.getLogManager().readConfiguration(stream);
-//            LOGGER = Logger.getLogger(EnterpriseWordCount.class.getName());
-
         } catch (IOException e) {
             e.printStackTrace();
         }

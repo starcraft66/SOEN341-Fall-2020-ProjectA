@@ -1,13 +1,12 @@
 package co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl;
 
+import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl.wcoo.EnterpriseWordCount;
 import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.ArgumentParser;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 /**
@@ -17,6 +16,16 @@ import java.util.logging.Logger;
  * in the form of printing one period character to stdout for every byte copied.
  */
 public class CopyCommand {
+    static {
+        InputStream stream = EnterpriseWordCount.class.getClassLoader().
+                getResourceAsStream("logging.properties");
+        try {
+            LogManager.getLogManager().readConfiguration(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected static Level level = Level.INFO;
     protected static boolean banner = false;
     protected static String BANNER;
