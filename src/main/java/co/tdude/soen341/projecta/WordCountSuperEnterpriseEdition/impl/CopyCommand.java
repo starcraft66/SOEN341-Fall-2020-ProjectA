@@ -1,12 +1,12 @@
 package co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl;
 
+import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl.wcoo.EnterpriseWordCount;
 import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.ArgumentParser;
-import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.strategies.WordCountCountStrategy;
-import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.wcoo.IWordCount;
 
 import java.io.*;
 import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 /**
@@ -16,6 +16,16 @@ import java.util.logging.Logger;
  * in the form of printing one period character to stdout for every byte copied.
  */
 public class CopyCommand {
+    static {
+        InputStream stream = EnterpriseWordCount.class.getClassLoader().
+                getResourceAsStream("logging.properties");
+        try {
+            LogManager.getLogManager().readConfiguration(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected static Level level = Level.INFO;
     protected static boolean banner = false;
     protected static String BANNER;
@@ -36,8 +46,15 @@ public class CopyCommand {
         ArgumentParser argumentParser = new EnterpriseArgumentParser(2);
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("banner", "Print command information banner"));
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("verbose", "Print with verbose output"));
+        BANNER = "copy Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n";
         if (!argumentParser.parseArguments(args)) {
-            System.out.println("Usage: copy [-?] [-b] [-v] file" );
+            if (argumentParser.getArguments().containsKey("b")) {
+                if ((Boolean) argumentParser.getArguments().get("b")) {
+                    Logger.getLogger("").info(BANNER);
+                    return;
+                }
+            }
+            System.out.println("Usage: copy [-?] [-b] [-v] source destination" );
             return;
         };
         if (argumentParser.getArguments().containsKey("v")) {
@@ -50,7 +67,6 @@ public class CopyCommand {
                 banner = true;
             }
         }
-        BANNER = "copy Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n";
 
         Logger.getLogger("").setLevel(level);
         for (Handler h : Logger.getLogger("").getHandlers()) {

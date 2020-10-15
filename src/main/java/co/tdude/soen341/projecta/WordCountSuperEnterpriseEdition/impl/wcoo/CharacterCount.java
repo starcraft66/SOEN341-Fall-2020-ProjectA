@@ -9,13 +9,13 @@ import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.stra
 public class CharacterCount extends EnterpriseWordCount {
     /**
      * The character count's constructor, which simply calls the parent constructor.
-     * @param countByCharacterStrategy The counting strategy
+     * @param wordCountCountStrategy The counting strategy
      * @param args Array containing the command-line arguments
      * @param banner The program's banner
      * @param appName The program's name
      */
-    public CharacterCount(WordCountCountStrategy countByCharacterStrategy, String[] args, String banner, String appName) {
-        super(countByCharacterStrategy, args, banner, appName);
+    public CharacterCount(WordCountCountStrategy wordCountCountStrategy, String[] args, String banner, String appName) {
+        super(wordCountCountStrategy, args, banner, appName);
     }
 
     /**
@@ -24,7 +24,7 @@ public class CharacterCount extends EnterpriseWordCount {
      */
     public static void main(String[] args) {
         try {
-            CharacterCount cc = new CharacterCount(new CountByCharacterStrategy(), args, "charcount Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n", "charcount");
+            EnterpriseWordCount cc = new CharacterCount(new CountByCharacterStrategy(), args, "charcount Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n", "charcount");
         } catch (Exception ex) {
             ex.printStackTrace();
         }

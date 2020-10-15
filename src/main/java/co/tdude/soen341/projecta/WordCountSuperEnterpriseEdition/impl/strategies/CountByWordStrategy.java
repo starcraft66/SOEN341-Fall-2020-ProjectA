@@ -36,11 +36,11 @@ public class CountByWordStrategy implements WordCountCountStrategy {
                 if (!inWord) {
                     inWord = true;
                     ++nWords;
+                    Logger.getLogger("").fine("w");
                 }
             } else {
                 inWord = false;
             }
-            Logger.getLogger("").fine("w");
         }
         return nWords;
     }

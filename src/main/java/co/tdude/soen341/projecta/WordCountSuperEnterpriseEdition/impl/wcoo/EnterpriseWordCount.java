@@ -8,20 +8,34 @@ import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.wcoo
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
 
 /**
  * Abstract class serving as the skeleton of any executable in the wcOO family of programs.
  */
 public abstract class EnterpriseWordCount implements IWordCount {
+    static {
+        InputStream stream = EnterpriseWordCount.class.getClassLoader().
+                getResourceAsStream("logging.properties");
+        try {
+            LogManager.getLogManager().readConfiguration(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected WordCountCountStrategy wordCountCountStrategy;
     protected Level level = Level.INFO;
     protected boolean banner = false;
     protected String BANNER;
     protected StringBuilder fileContent;
     protected String appName;
+    protected boolean fail = false;
 
     /**
      * The constructor that initializes a counting program. It takes care of tasks like registering the relevant
@@ -38,13 +52,21 @@ public abstract class EnterpriseWordCount implements IWordCount {
         ArgumentParser argumentParser = new EnterpriseArgumentParser(1);
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("banner", "Print command information banner"));
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("verbose", "Print with verbose output"));
+        this.BANNER = BANNER;
         if (!argumentParser.parseArguments(argv)) {
+            if (argumentParser.getArguments().containsKey("b")) {
+                if ((Boolean) argumentParser.getArguments().get("b")) {
+                    Logger.getLogger("").info(this.BANNER);
+                    fail = true;
+                    return;
+                }
+            }
             System.out.println("Usage: " + this.appName + " [-?] [-b] [-v] file" );
+            fail = true;
             return;
         }
         if (argumentParser.getArguments().containsKey("v")) {
             if ((Boolean) argumentParser.getArguments().get("v")) {
-                Logger.getLogger("wc").info("lol");
                 this.level = Level.FINE;
             }
         }
@@ -54,7 +76,9 @@ public abstract class EnterpriseWordCount implements IWordCount {
             }
         }
         this.wordCountCountStrategy = wordCountCountStrategy;
-        this.BANNER = BANNER;
+        if (this.banner) {
+            Logger.getLogger("").info(this.BANNER);
+        }
         String fileName = argumentParser.getPositional().get(0);
         try {
             FileReader reader = new FileReader(fileName);
@@ -82,9 +106,6 @@ public abstract class EnterpriseWordCount implements IWordCount {
         Logger.getLogger("").setLevel(this.level);
         for (Handler h : Logger.getLogger("").getHandlers()) {
             h.setLevel(this.level);
-        }
-        if (this.banner) {
-            Logger.getLogger("").info(this.BANNER);
         }
         return this.wordCountCountStrategy.getCount(fileContent);
     }

@@ -5,7 +5,6 @@ import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.Argu
 import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.CommandLineArgument;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
@@ -83,7 +82,7 @@ public class EnterpriseArgumentParser implements ArgumentParser {
         // really shitty parsing, the abbreviation of a kwarg is its first letter and they can clash
         // if it doesn't start with a dash it's not a boolean I guess?
         this.named.clear();
-        System.out.println(Arrays.toString(argv));
+
         // Loop through argv
         for (int i = 0; i < argv.length; i++) {
             String arg = argv[i];
