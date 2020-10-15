@@ -8,14 +8,29 @@ import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.wcoo
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
 
 /**
  * Abstract class serving as the skeleton of any executable in the wcOO family of programs.
  */
 public abstract class EnterpriseWordCount implements IWordCount {
+    static {
+        InputStream stream = EnterpriseWordCount.class.getClassLoader().
+                getResourceAsStream("logging.properties");
+        try {
+            LogManager.getLogManager().readConfiguration(stream);
+//            LOGGER = Logger.getLogger(EnterpriseWordCount.class.getName());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected WordCountCountStrategy wordCountCountStrategy;
     protected Level level = Level.INFO;
     protected boolean banner = false;
