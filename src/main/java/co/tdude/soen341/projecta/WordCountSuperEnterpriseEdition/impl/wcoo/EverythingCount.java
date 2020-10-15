@@ -11,13 +11,13 @@ public class EverythingCount extends EnterpriseWordCount {
     /**
      * The wc's constructor, which calls the parent constructor for the first counting strategy,
      * then runs the two other startegies.
-     * @param countByCharacterStrategy The counting strategy
+     * @param wordCountCountStrategy The counting strategy
      * @param args Array containing the command-line arguments
      * @param banner The program's banner
      * @param appName The program's name
      */
-    public EverythingCount(WordCountCountStrategy countByCharacterStrategy, String[] args, String banner, String appName) {
-        super(countByCharacterStrategy, args, banner, appName);
+    public EverythingCount(WordCountCountStrategy wordCountCountStrategy, String[] args, String banner, String appName) {
+        super(wordCountCountStrategy, args, banner, appName);
         if (!this.fail) {
             this.banner = false;
             this.wordCountCountStrategy = new CountByWordStrategy();

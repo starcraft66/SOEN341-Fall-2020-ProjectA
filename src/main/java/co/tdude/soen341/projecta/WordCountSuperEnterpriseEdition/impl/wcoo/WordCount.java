@@ -9,13 +9,13 @@ import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.stra
 public class WordCount extends EnterpriseWordCount {
     /**
      * The character count's constructor, which simply calls the parent constructor.
-     * @param countByCharacterStrategy The counting strategy
+     * @param wordCountCountStrategy The counting strategy
      * @param args Array containing the command-line arguments
      * @param banner The program's banner
      * @param appName The program's name
      */
-    public WordCount(WordCountCountStrategy countByCharacterStrategy, String[] args, String banner, String appName) {
-        super(countByCharacterStrategy, args, banner, appName);
+    public WordCount(WordCountCountStrategy wordCountCountStrategy, String[] args, String banner, String appName) {
+        super(wordCountCountStrategy, args, banner, appName);
     }
 
     /**
