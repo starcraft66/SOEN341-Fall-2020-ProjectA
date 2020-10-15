@@ -23,6 +23,6 @@ public class LineCount extends EnterpriseWordCount {
      * @param args Array containing the command-line arguments
      */
     public static void main(String[] args) {
-        CharacterCount cc = new CharacterCount(new CountByLineStrategy(), args, "linecount Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n", "linecount");
+        EnterpriseWordCount cc = new CharacterCount(new CountByLineStrategy(), args, "linecount Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n", "linecount");
     }
 }

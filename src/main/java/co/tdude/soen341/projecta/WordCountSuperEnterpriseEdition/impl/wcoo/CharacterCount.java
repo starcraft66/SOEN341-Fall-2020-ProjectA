@@ -24,7 +24,7 @@ public class CharacterCount extends EnterpriseWordCount {
      */
     public static void main(String[] args) {
         try {
-            CharacterCount cc = new CharacterCount(new CountByCharacterStrategy(), args, "charcount Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n", "charcount");
+            EnterpriseWordCount cc = new CharacterCount(new CountByCharacterStrategy(), args, "charcount Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n", "charcount");
         } catch (Exception ex) {
             ex.printStackTrace();
         }

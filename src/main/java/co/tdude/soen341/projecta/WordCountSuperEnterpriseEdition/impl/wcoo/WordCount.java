@@ -23,6 +23,6 @@ public class WordCount extends EnterpriseWordCount {
      * @param args Array containing the command-line arguments
      */
     public static void main(String[] args) {
-        CharacterCount cc = new CharacterCount(new CountByWordStrategy(), args, "wordcount Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n", "wordcount");
+        EnterpriseWordCount cc = new CharacterCount(new CountByWordStrategy(), args, "wordcount Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n", "wordcount");
     }
 }

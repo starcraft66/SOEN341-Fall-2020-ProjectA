@@ -32,6 +32,6 @@ public class EverythingCount extends EnterpriseWordCount {
      * @param args Array containing the command-line arguments
      */
     public static void main(String[] args) {
-        EverythingCount ec = new EverythingCount(new CountByLineStrategy(), args, "wc Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n", "wc");
+        EnterpriseWordCount ec = new EverythingCount(new CountByLineStrategy(), args, "wc Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n", "wc");
     }
 }
