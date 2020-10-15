@@ -1,10 +1,11 @@
 package co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.impl;
 
 import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.ArgumentParser;
-import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.strategies.WordCountCountStrategy;
-import co.tdude.soen341.projecta.WordCountSuperEnterpriseEdition.interfaces.wcoo.IWordCount;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +38,7 @@ public class CopyCommand {
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("banner", "Print command information banner"));
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("verbose", "Print with verbose output"));
         if (!argumentParser.parseArguments(args)) {
-            System.out.println("Usage: copy [-?] [-b] [-v] file" );
+            System.out.println("Usage: copy [-?] [-b] [-v] source destination" );
             return;
         };
         if (argumentParser.getArguments().containsKey("v")) {
