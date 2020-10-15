@@ -37,6 +37,7 @@ public abstract class EnterpriseWordCount implements IWordCount {
     protected String BANNER;
     protected StringBuilder fileContent;
     protected String appName;
+    protected boolean fail = false;
 
     /**
      * The constructor that initializes a counting program. It takes care of tasks like registering the relevant
@@ -53,8 +54,17 @@ public abstract class EnterpriseWordCount implements IWordCount {
         ArgumentParser argumentParser = new EnterpriseArgumentParser(1);
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("banner", "Print command information banner"));
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("verbose", "Print with verbose output"));
+        this.BANNER = BANNER;
         if (!argumentParser.parseArguments(argv)) {
+            if (argumentParser.getArguments().containsKey("b")) {
+                if ((Boolean) argumentParser.getArguments().get("b")) {
+                    Logger.getLogger("").info(this.BANNER);
+                    fail = true;
+                    return;
+                }
+            }
             System.out.println("Usage: " + this.appName + " [-?] [-b] [-v] file" );
+            fail = true;
             return;
         }
         if (argumentParser.getArguments().containsKey("v")) {
@@ -68,7 +78,6 @@ public abstract class EnterpriseWordCount implements IWordCount {
             }
         }
         this.wordCountCountStrategy = wordCountCountStrategy;
-        this.BANNER = BANNER;
         if (this.banner) {
             Logger.getLogger("").info(this.BANNER);
         }

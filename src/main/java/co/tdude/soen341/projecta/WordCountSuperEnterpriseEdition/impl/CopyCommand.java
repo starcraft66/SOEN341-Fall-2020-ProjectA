@@ -37,7 +37,14 @@ public class CopyCommand {
         ArgumentParser argumentParser = new EnterpriseArgumentParser(2);
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("banner", "Print command information banner"));
         argumentParser.addArgument(argumentParser.getArgumentFactory().buildBooleanCommandLineArgument("verbose", "Print with verbose output"));
+        BANNER = "copy Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n";
         if (!argumentParser.parseArguments(args)) {
+            if (argumentParser.getArguments().containsKey("b")) {
+                if ((Boolean) argumentParser.getArguments().get("b")) {
+                    Logger.getLogger("").info(BANNER);
+                    return;
+                }
+            }
             System.out.println("Usage: copy [-?] [-b] [-v] source destination" );
             return;
         };
@@ -51,7 +58,6 @@ public class CopyCommand {
                 banner = true;
             }
         }
-        BANNER = "copy Version 1.42b\nCopyright (C) ABC Inc 2020. All Rights Reserved.\nWritten by John Smith\n";
 
         Logger.getLogger("").setLevel(level);
         for (Handler h : Logger.getLogger("").getHandlers()) {

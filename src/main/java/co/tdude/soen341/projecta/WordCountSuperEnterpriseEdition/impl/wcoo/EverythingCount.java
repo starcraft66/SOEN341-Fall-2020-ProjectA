@@ -18,13 +18,15 @@ public class EverythingCount extends EnterpriseWordCount {
      */
     public EverythingCount(WordCountCountStrategy countByCharacterStrategy, String[] args, String banner, String appName) {
         super(countByCharacterStrategy, args, banner, appName);
-        this.banner = false;
-        this.wordCountCountStrategy = new CountByWordStrategy();
-        int result = runCount(this.fileContent.toString());
-        Logger.getLogger("").info(String.valueOf(result));
-        this.wordCountCountStrategy = new CountByCharacterStrategy();
-        result = runCount(this.fileContent.toString());
-        Logger.getLogger("").info(String.valueOf(result));
+        if (!this.fail) {
+            this.banner = false;
+            this.wordCountCountStrategy = new CountByWordStrategy();
+            int result = runCount(this.fileContent.toString());
+            Logger.getLogger("").info(String.valueOf(result));
+            this.wordCountCountStrategy = new CountByCharacterStrategy();
+            result = runCount(this.fileContent.toString());
+            Logger.getLogger("").info(String.valueOf(result));
+        }
     }
 
     /**
